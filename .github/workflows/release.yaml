@@ -1,0 +1,32 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Print release version
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
+#       - name: Fetch num squared
+#         id: get_square
+#         #uses: ./ # Uses an action in the root directory
+#         # or use a released Github Action
+#         uses: swamirara/github-action-python-template/.github/workflows/test_action.yaml@main
+#         with:
+#           num: 5
+      - name: mypythonaction
+        uses: swamirara/github-action-python-template@1.0.1
+        id: get_square
+        with:
+          num: 5
+
+      - name: Print the square
+        run: echo "${{ steps.get_square.outputs.num_squared }}"
