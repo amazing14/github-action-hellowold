@@ -1,3 +1,3 @@
 # Python Github Action
 
-Returns square of the number passed via action
+Executes the python script and returns square of the number passed via action
