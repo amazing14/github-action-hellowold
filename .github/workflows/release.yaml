@@ -23,7 +23,13 @@ jobs:
     
       - name: Show tag name with echo
         run: echo ${{ steps.release_data.outputs.zipball_url }}
+      
+      - name: Show repo name
+        run: echo ${{ github.event.repository.name }}
         
+      - name: Show gh
+        run: echo ${{ github.token }}
+      
       - name: mypythonaction
         uses: swamirara/github-action-python-template@1.0.1
         id: get_square
